@@ -26,7 +26,7 @@ $(document).ready(function() {
     close: 'Ok',
     closeOnSelect: false // Close upon selecting a date,
   });
-
+    
   var $chart = $('#btn-chart');
   var $file = $('#btn-file');
   var $video = $('#btn-video');
@@ -71,9 +71,9 @@ $(document).ready(function() {
               <div class="col s12 m8 offset-m2">
                 <div class="card horizontal hoverable">
                   <div class="card-stacked">
-                    <div class="card-content col m12">
-                      <h4>${inputVal2}</h4>
-                      <img src="${imgSrc[0].src}">
+                    <div class="card-content">
+                      <h4>${$inputVal2}</h4>
+                      <img class="col m10 offset-m1" src="${imgSrc[0].src}">
                     </div>
                   </div>
                 </div>
@@ -82,3 +82,38 @@ $(document).ready(function() {
   }
 
   $file.on('click', postImagen);
+
+  $('#videos').change(function() {
+    var f = this.files[0]; // FileList object
+  
+    // Only process image files.
+    var reader = new FileReader();
+  
+    // Closure to capture the file information.
+    reader.onload = function(e) {
+      $('#thumb-video').attr('src', e.target.result);
+    };
+  
+    // Read in the image file as a data URL.
+    reader.readAsDataURL(f);
+  });
+
+  function videoPost() {
+    $inputVal3 = $('#modal3 input:text').val();
+    let videoSrc = $('#thumb-video');
+    $('#modal3').modal('close');
+    $('main').append(`<div class="row">
+              <div class="col s12 m8 offset-m2">
+                <div class="card horizontal hoverable">
+                  <div class="card-stacked">
+                    <div class="card-content">
+                      <h4>${$inputVal3}</h4>
+                      <video src="${videoSrc[0].src}" controls ></video>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>`);
+  }
+
+  $video.on('click', videoPost);
