@@ -21,6 +21,8 @@
 
 - Se tuvo que implementar la API geolocation para que podamos ubicarnos en un mapa.
 
+- Al recargar la página el background cambia.
+
 
 ## **RESULTADO:**
 
