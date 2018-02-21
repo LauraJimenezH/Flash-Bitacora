@@ -1,0 +1,58 @@
+.thumb {
+  height: 75px;
+  border: 1px solid #000;
+  margin: 10px 5px 0 0;
+}
+
+.card img {
+  height: 200px;
+}
+
+video {
+  width: 600px;
+  height: 336px;
+}
+
+#modal4 {
+  min-height: 70%;
+}
+
+#modal4 .modal-content {
+  margin-top: 90px;
+}
+
+#map {
+  height: 300px;
+}
+
+#thumb {
+   display: none;
+}
+
+#thumb-video {
+ height: 0px;
+}
+
+body {
+  background: url(https://source.unsplash.com/random/?nature) fixed center; 
+  background-size: cover;
+  width: 100%;
+  height:100%;
+  opacity: 0.8;
+}
+
+.opacity {
+  height: 180px;
+  position: absolute;
+  width: 100%;
+  background-color: #00000052;
+  top: 0px;
+}
+
+.transp {
+  height: 180px;
+  width: 100%;
+  background-color: transparent;
+  color: white;
+  position: relative;
+}
