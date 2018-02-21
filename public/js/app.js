@@ -117,3 +117,63 @@ $(document).ready(function() {
   }
 
   $video.on('click', videoPost);
+
+ 
+  function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      // center: {lat: -12.025827, lng: -77.2679781},
+      zoom: 14
+    });
+    var infoWindow = new google.maps.InfoWindow({map: map});
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        var marker = new google.maps.Marker({
+          position: {lat: pos.lat, 
+            lng: pos.lng},
+          map: map
+        });
+        map.setCenter(pos);
+      }, function() {
+        handleLocationError(true, infoWindow, map.getCenter());
+      });
+    } else {
+      // Browser doesn't support Geolocation
+      handleLocationError(false, infoWindow, map.getCenter());
+    }
+  }
+  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(browserHasGeolocation ?
+      'Error: The Geolocation service failed.' :
+      'Error: Your browser doesn\'t support geolocation.');
+  }
+
+  $evento.click(events);
+
+  function events() {
+    $('#modal4').modal('close');
+    $inputVal4 = $('.title-event').val();
+    $dateVal = $('.date-event').val();
+
+    $('main').append(
+      `<div class="row">
+        <div class="col s12 m8 offset-m2">
+          <div class="card horizontal hoverable">
+            <div class="card-stacked">
+              <div class="card-content">
+                <h4>${$inputVal4}</h4>
+                <p>${$dateVal}</p>
+                <div id="map"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>`);
+    initMap();
+  }
+});
